@@ -4,7 +4,7 @@ cd ~/
 wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
 sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
 sudo apt-get update && apt-get install collectd
-/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard # run wizard to create a configuration file
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard # run wizard to create a configuration file
 # add additional log file for tracking from /var/log/nginx/access.log
 # !!!important you need to give chmod r+x to /var/log/nginx/access.log so cwagent can read the logs
 # skip statsd (network metrics) and collectd (system-level performance monitoring)
