@@ -13,7 +13,7 @@ Loki is a log aggregation system designed to work well with Prometheus and Grafa
     ```
 
 - **Create a configuration file** for Loki. Here's a basic configuration (`loki-config.yaml`):
-
+```yaml
 auth_enabled: false
 
 server:
@@ -66,7 +66,7 @@ ruler:
 # If you would like to disable reporting, uncomment the following lines:
 # analytics:
 #   reporting_enabled: false
-
+```
 
     This configuration is using the local filesystem for storage.
 
