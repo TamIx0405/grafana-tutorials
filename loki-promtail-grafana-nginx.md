@@ -71,7 +71,7 @@ ruler:
 - **Start Loki**:
 
     ```bash
-    nohup loki -config.file=loki-config.yaml &
+    nohup loki -config.file=loki-config.yaml &> /dev/null &
     ```
 
     Make sure Loki starts without errors. You can check the logs to verify.
@@ -118,7 +118,7 @@ Promtail is an agent that collects logs and ships them to Loki. You can install 
 - **Start Promtail**:
 
     ```bash
-    nohup promtail -config.file=promtail-config.yaml &
+    nohup promtail -config.file=promtail-config.yaml &> /dev/null &
     ```
 
     Promtail will start shipping logs from `/var/log/nginx/*.log` (adjust the path if your Nginx logs are in a different location) to Loki.
