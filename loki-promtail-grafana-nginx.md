@@ -7,7 +7,7 @@ Loki is a log aggregation system designed to work well with Prometheus and Grafa
 - **Download the Loki binary** from [Loki's releases page](https://github.com/grafana/loki/releases). For example, you can use:
 
     ```bash
-    wget https://github.com/grafana/loki/releases/download/v2.9.0/loki-linux-amd64.zip
+    wget https://github.com/grafana/loki/releases/download/v2.9.2/loki-linux-amd64.zip
     unzip loki-linux-amd64.zip
     sudo mv loki-linux-amd64 /usr/local/bin/loki
     ```
@@ -17,32 +17,58 @@ Loki is a log aggregation system designed to work well with Prometheus and Grafa
     ```yaml
     auth_enabled: false
 
-    server:
-      http_listen_port: 3100
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9096
+  log_level: debug
+  grpc_server_max_concurrent_streams: 1000
 
-    distributor:
-      ring:
-        kvstore:
-          store: inmemory
-        replication_factor: 1
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: /tmp/loki
+  storage:
+    filesystem:
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
 
-    ingester:
-      chunk_idle_period: 5m
-      chunk_block_size: 5000000
-      max_chunk_age: 1h
-      throughput_limit: 1048576
+query_range:
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 100
 
-    storage_config:
-      boltdb_shipper:
-        active_index_directory: /tmp/loki/index
-        cache_location: /tmp/loki/cache
-        shared_store: filesystem
-      filesystem:
-        directory: /tmp/loki/chunks
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
 
-    limits_config:
-      max_entries_limit: 500
-      max_line_size: 4096
+
+ruler:
+  alertmanager_url: http://localhost:9093
+
+
+# By default, Loki will send anonymous, but uniquely-identifiable usage and configuration
+# analytics to Grafana Labs. These statistics are sent to https://stats.grafana.org/
+#
+# Statistics help us better understand how Loki is used, and they show us performance
+# levels for most users. This helps us prioritize features and documentation.
+# For more information on what's sent, look at
+# https://github.com/grafana/loki/blob/main/pkg/analytics/stats.go
+# Refer to the buildReport method to see what goes into a report.
+#
+# If you would like to disable reporting, uncomment the following lines:
+#analytics:
+#  reporting_enabled: false
     ```
 
     This configuration is using the local filesystem for storage.
