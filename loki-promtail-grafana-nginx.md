@@ -85,7 +85,7 @@ Promtail is an agent that collects logs and ships them to Loki. You can install 
 - **Download the Promtail binary** from [Promtail's releases page](https://github.com/grafana/loki/releases).
 
     ```bash
-    wget https://github.com/grafana/loki/releases/download/v2.9.0/promtail-linux-amd64.zip
+    wget https://github.com/grafana/loki/releases/download/v2.9.2/promtail-linux-amd64.zip
     unzip promtail-linux-amd64.zip
     sudo mv promtail-linux-amd64 /usr/local/bin/promtail
     ```
