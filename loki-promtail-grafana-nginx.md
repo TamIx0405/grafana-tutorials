@@ -14,8 +14,7 @@ Loki is a log aggregation system designed to work well with Prometheus and Grafa
 
 - **Create a configuration file** for Loki. Here's a basic configuration (`loki-config.yaml`):
 
-    ```yaml
-    auth_enabled: false
+auth_enabled: false
 
 server:
   http_listen_port: 3100
@@ -52,10 +51,8 @@ schema_config:
         prefix: index_
         period: 24h
 
-
 ruler:
   alertmanager_url: http://localhost:9093
-
 
 # By default, Loki will send anonymous, but uniquely-identifiable usage and configuration
 # analytics to Grafana Labs. These statistics are sent to https://stats.grafana.org/
@@ -67,9 +64,9 @@ ruler:
 # Refer to the buildReport method to see what goes into a report.
 #
 # If you would like to disable reporting, uncomment the following lines:
-#analytics:
-#  reporting_enabled: false
-    ```
+# analytics:
+#   reporting_enabled: false
+
 
     This configuration is using the local filesystem for storage.
 
