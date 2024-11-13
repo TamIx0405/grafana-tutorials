@@ -68,8 +68,6 @@ ruler:
 #   reporting_enabled: false
 ```
 
-    This configuration is using the local filesystem for storage.
-
 - **Start Loki**:
 
     ```bash
