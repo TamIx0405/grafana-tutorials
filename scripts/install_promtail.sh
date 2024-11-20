@@ -8,3 +8,5 @@ sudo apt-get install promtail
 sudo systemctl enable promtail
 sudo wget -O /etc/promtail/config.yml  wget wget https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml
 sudo systemctl restart promtail
+sudo chown promtail:promtail /tmp/positions.yaml
+sudo chmod 644 /tmp/positions.yaml
