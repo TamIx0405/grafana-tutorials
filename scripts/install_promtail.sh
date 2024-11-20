@@ -10,3 +10,4 @@ sudo wget -O /etc/promtail/config.yml  wget wget https://raw.githubusercontent.c
 sudo systemctl restart promtail
 sudo chown promtail:promtail /tmp/positions.yaml
 sudo chmod 644 /tmp/positions.yaml
+sudo systemctl daemon-reload
